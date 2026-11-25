@@ -1,0 +1,51 @@
+{
+  "tests": [
+    {
+      "name": "Blocks destructive rm -rf command",
+      "event": "PreToolUse",
+      "tool": "Bash",
+      "cmd": "rm -rf /",
+      "expect": {
+        "verdict": "BLOCK",
+        "matched": 1,
+        "reasonContains": "destructive",
+        "maxMs": 500
+      }
+    },
+    {
+      "name": "Allows safe npm test command",
+      "event": "PreToolUse",
+      "tool": "Bash",
+      "cmd": "npm test",
+      "expect": {
+        "verdict": "ALLOW",
+        "matched": 1,
+        "maxMs": 500,
+        "maxTokens": 0
+      }
+    },
+    {
+      "name": "Blocks editing .env.production secrets",
+      "event": "PreToolUse",
+      "tool": "Edit",
+      "file": ".env.production",
+      "expect": {
+        "verdict": "BLOCK",
+        "matched": 1,
+        "reasonContains": "secret file",
+        "maxMs": 500
+      }
+    },
+    {
+      "name": "Allows editing normal TypeScript source file",
+      "event": "PreToolUse",
+      "tool": "Edit",
+      "file": "src/app.ts",
+      "expect": {
+        "verdict": "ALLOW",
+        "matched": 1,
+        "maxMs": 500
+      }
+    }
+  ]
+}

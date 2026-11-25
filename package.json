@@ -1,0 +1,46 @@
+{
+  "name": "claude-hook-replay",
+  "version": "0.1.0",
+  "description": "Zero-dependency offline simulator, static doctor, test runner, and token/latency profiler for Claude Code hooks.",
+  "type": "module",
+  "bin": {
+    "claude-hook-replay": "./bin/cli.mjs",
+    "chr": "./bin/cli.mjs"
+  },
+  "exports": {
+    ".": "./src/runner.mjs",
+    "./doctor": "./src/doctor.mjs",
+    "./tester": "./src/tester.mjs",
+    "./payloads": "./src/payloads.mjs"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "demo:doctor": "node bin/cli.mjs doctor --settings examples/settings.json",
+    "demo:test": "node bin/cli.mjs test --settings examples/settings.json --suite examples/hook-tests.json",
+    "demo:bench": "node bin/cli.mjs bench --settings examples/settings.json"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "claude-hooks",
+    "anthropic",
+    "ai-coding",
+    "cli",
+    "testing",
+    "debugger",
+    "devtools"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "examples/",
+    ".claude/",
+    "README.md",
+    "LICENSE"
+  ]
+}
